@@ -15,7 +15,7 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Build Docker image
-      run: docker build -t my-docker-image:githubaction .
+      run: docker build -f Shiny.ToDo/Dockerfile . -t my-docker-image:githubaction
 
     - name: Login to Docker Hub
       run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
