@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Build, Test Run, and Push to Dockerhub Repo
 
 on:
   push:
@@ -7,12 +7,24 @@ on:
     branches: [ "main" ]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Build Docker image
+      run: docker build -t my-docker-image:latest .
+
+    - name: Test run Docker Container
+      run: docker run -d -p 3838:3838 my-docker-image:latest
+
+    - name: Login to Docker Hub
+      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Tag Docker Image to Dockerhub Repository
+      run: docker tag my-docker-image:latest ${{ secrets.DOCKER_USERNAME }}/shiny.todo:latest
+
+    - name: Push Docker image to Docker Hub Repository
+      run: docker push ${{ secrets.DOCKER_USERNAME }}/shiny.todo:latest
