@@ -22,6 +22,15 @@ jobs:
 
     - name: Tag Docker Image to Dockerhub Repository
       run: docker tag my-docker-image:githubaction ${{ secrets.DOCKER_USERNAME }}/shiny.todo:githubaction
-
-    - name: Push Docker image to Docker Hub Repository
-      run: docker push ${{ secrets.DOCKER_USERNAME }}/shiny.todo:githubaction
+      
+    - name: Build and push Docker image
+      uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
+      with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/shiny.todo:githubaction
+          
+          
+    #- name: Push Docker image to Docker Hub Repository
+    #  run: docker push ${{ secrets.DOCKER_USERNAME }}/shiny.todo:githubaction
