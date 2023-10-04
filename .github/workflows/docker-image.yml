@@ -17,9 +17,6 @@ jobs:
     - name: Build Docker image
       run: docker build -t my-docker-image:latest .
 
-    - name: Test run Docker Container
-      run: docker run -d -p 3838:3838 my-docker-image:latest
-
     - name: Login to Docker Hub
       run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
