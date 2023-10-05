@@ -2,9 +2,9 @@ name: Build, Test Run, and Push to Dockerhub Repo
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "cris-branch" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "cris-branch" ]
 
 jobs:
   build:
