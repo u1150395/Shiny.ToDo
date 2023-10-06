@@ -1,6 +1,6 @@
 # Base image https://hub.docker.com/u/rocker/
 #If there is a specific version you want to use, change the latest to whatever version you want to use that is available
-#at the rocker/shiny docker hub website: https://hub.docker.com/r/rocker/shiny/tags
+#at the rocker/shiny docker hub website: https://hub.docker.com/r/rocker/shiny/tags.
 FROM rocker/shiny:latest
 
 # system libraries of general use
