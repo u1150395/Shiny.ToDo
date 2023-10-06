@@ -42,7 +42,7 @@ ADD ./ ./app
 #EXPOSE 3838
 
 #Run the CMD command with ENTRYPOINT
-ENTRYPOINT ["R", "-e", "CMD"]
+ENTRYPOINT ["sh", "-c"]
 
 #Tell the docker to run the /app folder containing the ShinyApp at localhost with port 3838
-CMD ["shiny::runApp('/app', host='0.0.0.0', port=3838)"]
+CMD ["R", "-e", "shiny::runApp('/app', host='0.0.0.0', port=3838)"]
