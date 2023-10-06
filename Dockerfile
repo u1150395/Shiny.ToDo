@@ -28,23 +28,7 @@ COPY DESCRIPTION .
 
 #This will install the remotes package first and then install the packages under the DESCRIPTION file.
 #Documentation for install_deps() function can be found here: https://rdrr.io/cran/remotes/man/install_deps.html
-RUN R -e "install.packages('dplyr')" 
-
-RUN R -e "install.packages('stringr')" 
-
-RUN R -e "install.packages('shiny')" 
-
-RUN R -e "install.packages('shinydashboard')" 
-
-RUN R -e "install.packages('DT')" 
-
-RUN R -e "install.packages('shinytest2')" 
-
-RUN R -e "install.packages('uuid')" 
-
-RUN R -e "install.packages('devtools')" 
-
-RUN R -e "devtools::install_github('https://github.com/FlippieCoetser/Storage')"
+RUN R -e 'install.packages("remotes"); remotes::install_deps(dependencies = TRUE)'
 
 #create a folder in Docker to where we will copy our ShinyApp folder
 RUN mkdir ./app
