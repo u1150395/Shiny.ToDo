@@ -39,7 +39,7 @@ ADD ./ ./app
 
 #Shiny server runs on port 3838 by default. If you wish to use another port, uncomment the EXPOSE command below and 
 #change the port number to whatever you want to use
-#EXPOSE 3838
+EXPOSE 3838
 
 #Run the CMD command with ENTRYPOINT
 ENTRYPOINT ["sh", "-c"]
