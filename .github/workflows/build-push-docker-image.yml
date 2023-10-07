@@ -65,8 +65,15 @@ jobs:
 
       - name: Install dependencies
         run: |
-          Rscript -e "install.packages('remotes')"
-          Rscript -e "remotes::install_deps(dependencies = TRUE)"
+          Rscript -e "install.packages('dplyr')" 
+          Rscript -e "install.packages('stringr')"
+          Rscript -e "install.packages('shiny')" 
+          Rscript -e "install.packages('shinydashboard')"
+          Rscript -e "install.packages('DT')"
+          Rscript -e "install.packages('shinytest2')"
+          Rscript -e "install.packages('uuid')" 
+          Rscript -e "install.packages('devtools')"
+          Rscript -e "devtools::install_github('https://github.com/FlippieCoetser/Storage')"
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
       - name: Build and push Docker image
