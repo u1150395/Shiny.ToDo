@@ -65,7 +65,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          Rscript -e "install.packages('remotes'); remotes::install_deps(dependencies = TRUE)"
+          Rscript -e "install.packages('remotes')"
+          Rscript -e "remotes::install_deps(dependencies = TRUE)"
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
       - name: Build and push Docker image
