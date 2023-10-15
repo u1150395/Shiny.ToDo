@@ -3,6 +3,7 @@
 #at the rocker/shiny docker hub website: https://hub.docker.com/r/rocker/shiny/tags.
 FROM rocker/shiny:latest
 
+WORKDIR ./app
 # system libraries of general use
 ## install debian packages
 RUN apt-get update -qq && apt-get -y --no-install-recommends install \
@@ -31,18 +32,10 @@ COPY DESCRIPTION .
 RUN R -e 'install.packages("remotes"); remotes::install_deps(dependencies = TRUE)'
 
 #create a folder in Docker to where we will copy our ShinyApp folder
-RUN mkdir ./app
-
-#Make sure that you are already in the ShinyApp folder so you do not encounter errors when running the docker build command
-#For full context:https://stackoverflow.com/questions/49382636/dockerfile-copy-directory-from-windows-host-to-docker-container
-ADD ./ ./app
+COPY . .
 
 #Shiny server runs on port 3838 by default. If you wish to use another port, uncomment the EXPOSE command below and 
 #change the port number to whatever you want to use
 EXPOSE 3838
 
-#Run the CMD command with ENTRYPOINT
-ENTRYPOINT ["sh", "-c"]
-
-#Tell the docker to run the /app folder containing the ShinyApp at localhost with port 3838
-CMD ["R -e 'shiny::runApp(\"/app\", host=\"0.0.0.0\", port=3838)'"]
+CMD ["R", "-e", "shiny::runApp('/app', host = '0.0.0.', port = 3838)"]
