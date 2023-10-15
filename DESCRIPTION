@@ -16,12 +16,14 @@ RoxygenNote: 7.2.3
 Imports: 
     shiny,
     shinydashboard,
+    Validate,
     Environment,
     Query,
     Storage,
     dplyr,
     DT,
 Remotes: 
+    FlippieCoetser/Validate,
     FlippieCoetser/Environment,
     FlippieCoetser/Query,
     FlippieCoetser/Storage

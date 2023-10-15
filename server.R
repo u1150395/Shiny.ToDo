@@ -4,7 +4,7 @@
 configuration <- data.frame()
 
 storage <- configuration |> Storage::Storage(type = "memory")
-Todo.Mock.Data |> storage[['SeedTable']]('Todo')
+Todo.Mock.Data |> storage[['Seed.Table']]('Todo')
 
 # Data Layer
 data  <- storage |> Todo.Orchestration()
